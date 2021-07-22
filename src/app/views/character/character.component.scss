@@ -1,0 +1,81 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+.character-detail-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
+}
+
+.character-detail-container .title {
+  font-family: 'orange juice';
+  color: rgb(226, 54, 54);
+  text-align: center;
+  font-size: 8rem;
+  margin: 2rem;
+}
+
+.character-detail-container .info {
+  width: 60%;
+  height: auto;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.character-detail-container .info img {
+  border: 5px solid rgb(247, 147, 63);
+  width: 40%;
+  height: auto;
+  margin: 5px;
+}
+
+.character-detail-container .info .description {
+  font-size: 1.3rem;
+  text-justify: auto;
+  width: 60%;
+  height: auto;
+  margin: 10px;
+}
+
+.character-detail-container .carousels {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  color: white;
+  margin: 10px;
+}
+
+.character-detail-container .carousels .comics {
+  width: 25%;
+  height: auto;
+  margin: auto;
+}
+
+.character-detail-footer {
+  background-color: #757575;
+  width: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.character-detail-footer .links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+}
+
+
+.page-footer{
+  color: black !important;
+}

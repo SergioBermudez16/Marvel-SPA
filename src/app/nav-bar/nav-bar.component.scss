@@ -1,0 +1,19 @@
+.sticky {
+  padding: 0px;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  z-index: 10;
+}
+
+.logo {
+  padding: 0px 5px;
+  font-size: 20px;
+}
+
+.searchBarBorder {
+  border: 5px solid #000000;
+  margin: 5px 0px;
+  border-style: double;
+  background-color: rgb(180, 180, 180);
+}

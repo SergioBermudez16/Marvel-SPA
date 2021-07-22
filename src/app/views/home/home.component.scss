@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html,
+body {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  margin: auto;
+}
+
+select {
+  width: 100px;
+  overflow: hidden;
+  white-space: pre;
+  text-overflow: ellipsis;
+  -webkit-appearance: none;
+}
+
+option {
+  border: solid 1px #DDDDDD;
+}
+
+::selection {
+  color: #fff;
+  background: #1cc7d0;
+}
+
+.characters-list-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.characters-list-container .card-container {
+  position: relative;
+  transform-style: preserve-3d;
+  transform: translateY(0deg);
+  background: #ffffff;
+  border-radius: 70%;
+  transition: width 400ms, height 400ms, border-radius 200ms, left 200ms, top 200ms, background-color 400ms;
+  -moz-transition: width 400ms, height 200ms, border-radius 200ms, left 200ms, top 200ms, background-color 400ms;
+  -ms-transition: width 400ms, height 200ms, border-radius 200ms, left 200ms, top 200ms, background-color 400ms;
+  -o-transition: width 400ms, height 200ms, border-radius 200ms, left 200ms, top 200ms, background-color 400ms;
+  -webkit-transition: width 400ms, height 200ms, border-radius 200ms, left 200ms, top 200ms, background-color 400ms;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.characters-list-container .card-container .card-front {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: auto;
+  border-radius: 10%;
+  border: 5px solid rgb(255, 255, 255);
+  padding: 10px;
+  width: 280px;
+}
+
+.characters-list-container .card-container .card-front img {
+  height: 200px;
+  max-width: 100%;
+  border-radius: 70%;
+  border: 5px solid rgb(255, 255, 255);
+}
+
+.characters-list-container .card-container .card-info {
+  width: 400px;
+  font-size: 15px;
+  object-fit: cover;
+  display: none;
+}
+
+.characters-list-container .card-container .card-info img {
+  max-width: 100%;
+  width: auto;
+  height: 200px;
+  border-radius: 70%;
+  border: 5px solid rgb(255, 255, 255);
+}
+
+.header {
+  font-weight: bolder;
+  text-align: center;
+  text-justify: inter-word;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.characters-list-container .card-container .card-info .description {
+  overflow: auto;
+  text-align: justify;
+  text-justify: inter-word;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 20px 10px;
+  max-height: 100px;
+  width: 100%;
+  border: 2px solid;
+  padding: 5px;
+}
+
+.characters-list-container .card-container .card-info .comic-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  border: 2px solid;
+  padding: 5px;
+  width: 100%;
+}
+
+.characters-list-container .card-container .card-info .comic-list #displayComicsButton{
+  width: 100%;
+}
+
+.characters-list-container .card-container .card-info .comic-list button:hover{
+  background-color: rgb(247, 143, 63);
+}
+
+.characters-list-container .card-container .card-info .actions {
+  margin: 10px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.characters-list-container .card-container .card-info .actions .details-btn {
+  display: block;
+  height: 40px;
+  width: 100px;
+  color: #fff;
+  text-align: center;
+  margin: 0 5px;
+  line-height: 38px;
+  border: 2px solid transparent;
+  border-radius: 10%;
+  background: linear-gradient(375deg, #1cc7d0, #518cca);
+}
+
+.characters-list-container .card-container .card-info .actions .details-btn:hover {
+  color: #1cc7d0;
+  border-color: #1cc7d0;
+  background: linear-gradient(375deg, transparent, transparent);
+}
+
+.characters-list-container .card-container:hover {
+  padding: 5px;
+  border-radius: 10px;
+
+  .card-front{
+    display: none;
+  }
+  .card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  height: auto;
+}
+
+.modal-header {
+  height: auto;
+  background-color: rgb(226, 54, 54);
+  color: rgb(255, 255, 255);
+  height: auto;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.modal-header .modal-title {
+  width: 70%;
+  font-size: 1.5rem;
+  text-align: center;
+  word-wrap: break-word;
+  object-fit: cover;
+  height: auto;
+}
+
+.modal-body {
+  background-color: rgb(34, 34, 34);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+}
+
+.modal-body img {
+  width: 50%;
+  object-fit: cover;
+}
+
+.modal-body .modal-info {
+  background-color: rgb(235, 235, 235);
+  margin: auto 10px;
+  padding: 10px;
+  border-radius: 30px;
+}
+
+.modal-header .modal-actions mdb-icon {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+.container .paginator {
+  background-color: white;
+  color: rgb(187, 27, 27) !important;
+}

@@ -1,0 +1,136 @@
+<body name="bodyHome" style="padding: 10px; width: 100%;">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap" rel="stylesheet">
+  <ng-container *ngIf="characterService.IS_LOADING; else homeTemplate">
+    <div style="width: 100%; margin-top: 30px; margin-left: 30px; margin-right: 30px; font-size: 2rem;">
+      <div style="background-color: rgb(247, 143, 63);" role="alert">
+        <h1>Loading info...</h1>
+        <h1>Please wait</h1>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #homeTemplate>
+    <ng-container *ngIf="!characters.length; else charactersTemplate">
+      <div style="width: 100%; margin-top: 30px; margin-left: 30px; margin-right: 30px; font-size: 2rem;">
+        <div style="background-color: rgb(247, 143, 63);" role="alert">
+          <h1>Characters Not Found...</h1>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #charactersTemplate>
+      <div class="container" fxFlex fxLayout="column">
+        <div fxLayout="row wrap">
+          <div fxFlex="50" fxFlex.md="50" fxFlex.sm=50 fxFlex.xs="100" fxLayout="column"
+            *ngFor="let character of characters | paginate: config; index as i" class="characters-list-container">
+            <div class="card-container">
+              <div class="card-front">
+                <img src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}" alt="{{character.name}}">
+                <div class="header">
+                  <div class="character-title">
+                    {{character.name}}
+                  </div>
+                  <div class="character-date">
+                    Modified Date: {{character.modified | date : 'dd/MM/yyyy'}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-info">
+                <img src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}" alt="{{character.name}}">
+                <div class="header">
+                  <div class="character-title">
+                    {{character.name}}
+                  </div>
+                  <div class="character-date">
+                    Modified Date: {{character.modified | date : 'dd/MM/yyyy'}}
+                  </div>
+                </div>
+                <div class="description">
+                  <ng-container *ngIf="!character.description.length; else descriptionTemplate">
+                    <div style="text-align: center; width: 100%; margin: auto">
+                      No Description available...
+                    </div>
+                  </ng-container>
+                  <ng-template #descriptionTemplate>
+                    <p innerHTML={{character.description}}>{{character.description}}</p>
+                  </ng-template>
+                </div>
+                <div class="comic-list">
+                  <ng-container *ngIf="character.comics.available==0; else comicTemplate">
+                    <div style="text-align: center; width: 100%; margin: auto">
+                      No Related Comics available...
+                    </div>
+                  </ng-container>
+                  <ng-template #comicTemplate>
+                    <button id="displayComicsButton" type="button" class="btn btn-outline-dark"
+                      (click)="isComicListDisplayed=!isComicListDisplayed">{{ isComicListDisplayed == true ? 'Hide' : 'Show' }}
+                      Related Comics
+                    </button>
+                    <div *ngIf="isComicListDisplayed">
+                      <br>
+                      <div *ngFor=" let comic of character.comics.items.slice(0,4)" style="margin: 5px;">
+                        <button style="padding: 5px;" type="button" class="btn btn-outline-dark"
+                          (click)="showComicModal(comicModalTemplate,comic)"
+                          tooltip="Press to see this comic">{{comic.name}}</button>
+
+                      </div>
+                    </div>
+                  </ng-template>
+                </div>
+
+                <div class="actions">
+                  <button class="details-btn" color="primary" [routerLink]="['/character', character.id]"
+                    tooltip="Go to the details page for this character" placement="right">Details</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="characters.length" style="margin: auto;">
+          <div class="justify-content-center paginator">
+            <pagination-controls responsive="true" previousLabel="Prev" nextLabel="Next"
+              (pageChange)="config.currentPage=$event">
+            </pagination-controls>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ng-template>
+</body>
+
+<ng-template #comicModalTemplate>
+  <div class="modal-body">
+    <img src="{{selectedComic.thumbnail.path}}.{{selectedComic.thumbnail.extension}}" alt="{{selectedComic.title}}">
+    <div class="modal-info">
+      <ng-container *ngIf="selectedComic.description==null; else comicDescriptionTemplate">
+        <div class="col-12 text-center" style="margin: auto;">
+          No Description available...
+        </div>
+      </ng-container>
+      <ng-template #comicDescriptionTemplate>
+        <p innerHTML={{selectedComic.description}}>{{selectedComic.description}}</p>
+      </ng-template>
+    </div>
+  </div>
+  <div class="modal-header">
+    <div class="modal-title">
+      {{selectedComic.title}}
+    </div>
+    <div class="modal-actions">
+      <a>
+        <mdb-icon [class]="selectedComic.isFavorite ? 'amber-text' : 'white-text'" mdbWavesEffect fas icon="heart"
+          size="2x" (click)="favoriteToogle()" [adaptivePosition]="false" placement="left" tooltip="Add to favorites">
+        </mdb-icon>
+      </a>
+      <a>
+        <mdb-icon mdbWavesEffect fas icon="sign-out-alt" size="2x" (click)="comicModalRef.hide()" placement="left"
+          tooltip="Exit">
+        </mdb-icon>
+      </a>
+
+    </div>
+  </div>
+  <div>
+  </div>
+</ng-template>

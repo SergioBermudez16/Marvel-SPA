@@ -1,0 +1,83 @@
+<body *ngIf="!isLoading" class="character-detail-container">
+  <div class="title">
+    {{character.name}}
+  </div>
+  <div class="info">
+    <img src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}" alt="character image">
+    <div class="description">
+      <ng-container *ngIf="!character.description.length; else descriptionTemplate">
+        No Description available...
+      </ng-container>
+      <ng-template #descriptionTemplate>
+        {{character.description}}
+      </ng-template>
+    </div>
+  </div>
+  <div *ngIf="characterComics.length" class="carousels">
+    <img style="width: 32%; padding: 10%;" src="../../../assets/captain-america-shield-logo.png"
+      alt="Captain America Shield">
+    <div class="comics">
+      <h2>Related Comics</h2>
+      <mdb-carousel [animation]="'slide'">
+        <mdb-carousel-item *ngFor="let comic of characterComics">
+          <img class="d-block w-100" src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="{{comic.title}}">
+        </mdb-carousel-item>
+      </mdb-carousel>
+    </div>
+    <img style="width: 32%; padding: 10%;" src="../../../assets/captain-america-shield-logo.png"
+      alt="Captain America Shield">
+  </div>
+
+</body>
+
+<footer *ngIf="!isLoading" class="page-footer font-small grey pt-4">
+
+  <div class="container-fluid text-center text-md-left">
+    <div class="row">
+      <div class="col-md-6 mt-md-0 mt-3">
+
+        <h5 class="text-uppercase">More Info</h5>
+        <p>If you want to see more information about this caracter, please visit our links.</p>
+
+      </div>
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <h5 class="text-uppercase">About Character</h5>
+        <ul>
+          <li *ngFor="let info of character.urls">
+            <a style="text-align: center; color: black;" href="{{info.url}}" title="{{info.type}}" target="{{info.type}}">
+              <img width="14%" height="auto" alt="{{info.type}} Info" src="../../../assets/{{info.type}}-logo.png">
+              {{info.type}}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <h5 class="text-uppercase">Marvel Social Networks</h5>
+        <ul> 
+          <li>
+            <a style="text-align: center; color: black;" href="https://www.facebook.com/MarvelLatinoamerica/?brand_redir=6883542487" target="facebook">
+              <mdb-icon size="2x" fab icon="facebook"></mdb-icon> Facebook
+            </a>
+          </li>
+          <li>
+            <a style="text-align: center; color: black;" href="https://twitter.com/marvel?lang=es" target="twitter">
+              <mdb-icon size="2x" fab icon="twitter"></mdb-icon> Twitter
+            </a>
+          </li>
+
+          <li>
+            <a style="text-align: center; color: black;" href="https://www.instagram.com/marvel/?hl=es-la" target="instagram">
+              <mdb-icon size="2x" fab icon="instagram"></mdb-icon> Instagram
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright text-center py-3">© 2020 Developed by:
+    <a href="https://www.linkedin.com/in/sergio-bermudez-129238197/" target="developer"> Bermudez, Sergio</a>
+  </div>
+</footer>

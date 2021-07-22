@@ -1,0 +1,62 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-light grey lighten-1">
+
+  <mdb-navbar-brand><a class="navbar-brand" href="#">
+      <img
+        src="https://s2.qwant.com/thumbr/0x380/5/d/2669bec6e4580996f5758cc66ac69706fcf28ee21bd86623d29a8fab668c99/marvel-logo-1280jpg-8851ea_1280w.jpg?u=http%3A%2F%2Fassets2.ignimgs.com%2F2013%2F11%2F13%2Fmarvel-logo-1280jpg-8851ea_1280w.jpg&q=0&b=1&p=0&a=1"
+        height="30" alt="MarvelAPP">
+    </a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/home"
+          routerLinkActive="active"><strong>Home</strong><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a *ngIf="!isFavoritesDisplayed" (click)="displayFavorites()" class="nav-link waves-light"
+          mdbWavesEffect><strong>Show Favorites</strong></a>
+      </li>
+      <li class="nav-item">
+        <a *ngIf="isFavoritesDisplayed" (click)="hideFavorites()" class="nav-link waves-light"
+          mdbWavesEffect><strong>Hide Favorites</strong></a>
+      </li>
+
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-dark" mdbWavesEffect>
+          <strong>Sort By</strong><span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-dark" mdbWavesEffect (click)="onSelectChange('name')">
+            <strong>Ascending by Name</strong></a>
+          <a class="dropdown-item waves-dark " mdbWavesEffect (click)="onSelectChange('modified')">
+            <strong>Ascending by Modified Date</strong></a>
+          <div class="divider dropdown-divider"></div>
+          <a class="dropdown-item waves-dark" mdbWavesEffect (click)="onSelectChange('-name')">
+            <strong>Descending by Name</strong></a>
+          <a class="dropdown-item waves-dark " mdbWavesEffect (click)="onSelectChange('-modified')">
+            <strong>Descending by Modified Date</strong></a>
+        </div>
+      </li>
+
+    </ul>
+    <!-- Links -->
+    <!-- Search form -->
+    <div class="searchBarBorder">
+      <form [formGroup]="searchBarControl" class="form-inline waves-light" mdbWavesEffect>
+        <div class="md-form my-0">
+          <input class="form-control mr-sm-2" #characterSearchInput type="text" placeholder="Search">
+        </div>
+      </form>
+    </div>
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <router-outlet #o="outlet"></router-outlet>
+  <div *ngIf="isFavoritesDisplayed" fxFlex="30%">
+    <router-outlet name="sideRouter"></router-outlet>
+  </div>
+</div>

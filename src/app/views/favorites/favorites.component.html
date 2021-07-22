@@ -1,0 +1,19 @@
+<body *ngIf="!isLoading" style="padding: 20px;">
+  <div class="container">
+    <div class="title">
+      <img src="../../../assets/marvel-comics-logo.png" alt="favorite comics">
+      <div *ngIf="!favoriteComics.length" style="color: white; text-align: center;">
+        <h2>Add your favorite comics to the list...</h2>
+      </div>
+    </div>
+    <div *ngIf="favoriteComics.length" class="info">
+      <div class="favorite-list-container" *ngFor="let comic of favoriteComics">
+        <div class="favorite-container">
+          <img src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="{{comic.title}}">
+          <mdb-icon mdbWavesEffect fas icon="far fa-trash-alt" class="white-text" size="2x"
+            (click)="deleteFromFavorites(comic.id)"></mdb-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
